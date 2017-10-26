@@ -1,0 +1,7 @@
+Pages/ProductPage.class
+BaseClass/BaseSetup.class
+Pages/SearchPage.class
+Pages/SearchResultPage.class
+Pages/HomePage.class
+Pages/LoginPage.class
+BaseClass/GlobalSetup.class

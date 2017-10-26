@@ -1,7 +1,9 @@
 <suite name="Weather" verbose="1" parallel="tests" thread-count="2" >
     <test name="Signup and SignIn" >
         <classes>
-            <class name="TestCaseWeather.SignUpAndSignIn" />
+            <class name="FlipkartTest.LoginTest" />
+            <class name="FlipkartTest.ProductDescriptionTest" />
+            <class name="FlipkartTest.ProductSearchTest" />
         </classes>
     </test>
 </suite>
