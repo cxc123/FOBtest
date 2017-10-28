@@ -1,12 +1,14 @@
 package Pages;
 
-import BaseClass.GlobalSetup;
+import Config.GlobalSetup;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.NoSuchElementException;
 
 /**
  * Created by aakumar on 25/10/17.
@@ -38,21 +40,34 @@ public class SearchPage {
         {
             PageFactory.initElements(new AppiumFieldDecorator(webDriver),this);
         }
-        else
-        {
 
+    }
+
+    public  void enterSearchString() throws TimeoutException,NoSuchElementException
+    {
+        try {
+
+
+            textEnter.sendKeys(this.searchString);
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
-    public  void enterSearchString()
+    public  SearchResultPage searchProduct() throws TimeoutException,NoSuchElementException
     {
-        textEnter.sendKeys(this.searchString);
+        try {
+            clickSearch.click();
 
-    }
-
-    public  SearchResultPage searchProduct()
-    {
-        clickSearch.click();
-        return  new SearchResultPage(webDriver);
+            return new SearchResultPage(webDriver);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return  null;
+        }
     }
 }

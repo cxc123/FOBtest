@@ -1,16 +1,13 @@
 package Pages;
 
-import BaseClass.GlobalSetup;
-import io.appium.java_client.AppiumDriver;
+import Config.GlobalSetup;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.android.*;
 import io.appium.java_client.pagefactory.*;
+
+import java.util.NoSuchElementException;
 
 /**
  * Created by aakumar on 26/06/17.
@@ -35,30 +32,50 @@ public class LoginPage {
         {
             PageFactory.initElements(new AppiumFieldDecorator(webDriver),this);
         }
-        else
-        {
 
+    }
+    public HomePage validlogin(String username,String password) throws TimeoutException,NoSuchElementException
+    {
+        try {
+            email.sendKeys(username);
+            this.password.sendKeys(password);
+            login.click();
+            return new HomePage(webDriver);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return  null;
         }
     }
-    public HomePage validlogin(String username,String password) throws Exception
+
+    public LoginPage invalidLogin(String username,String password) throws TimeoutException,NoSuchElementException
     {
-        email.sendKeys(username);
-        this.password.sendKeys(password);
-        login.click();
-        return new HomePage(webDriver);
+        try {
+            email.sendKeys(username);
+            this.password.sendKeys(password);
+            login.click();
+            return this;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return  null;
+        }
     }
 
-    public LoginPage invalidLogin(String username,String password) throws Exception
+    public boolean isLoginDisplayed()   throws TimeoutException,NoSuchElementException
     {
-        email.sendKeys(username);
-        this.password.sendKeys(password);
-        login.click();
-        return this;
-    }
+        try {
 
-    public boolean isLoginDisplayed() throws  Exception
-    {
-        return login.isDisplayed();
+
+            return login.isDisplayed();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return  false;
+        }
     }
 
 }

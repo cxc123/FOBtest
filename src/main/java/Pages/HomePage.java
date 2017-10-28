@@ -1,14 +1,15 @@
 package Pages;
 
-import BaseClass.GlobalSetup;
-import io.appium.java_client.AppiumDriver;
+import Config.GlobalSetup;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.NoSuchElementException;
 
 /**
  * Created by aakumar on 25/10/17.
@@ -30,22 +31,32 @@ public class HomePage {
 
             PageFactory.initElements(new AppiumFieldDecorator(webDriver),this);
         }
-        else
-        {
+    }
 
+
+    public boolean searchMenuVisible() throws ElementNotVisibleException
+    {
+        try {
+            return this.searchMenu.isDisplayed();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return  false;
         }
     }
 
-
-    public boolean searchMenuVisible()
+    public SearchPage gotoSearchPage() throws TimeoutException,NoSuchElementException
     {
-        return  this.searchMenu.isDisplayed();
-    }
-
-    public SearchPage gotoSearchPage()
-    {
-        this.searchMenu.click();
-        return  new SearchPage(webDriver);
+        try {
+            this.searchMenu.click();
+            return new SearchPage(webDriver);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return  null;
+        }
 
     }
 }

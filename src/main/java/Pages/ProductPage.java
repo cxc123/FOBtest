@@ -1,11 +1,14 @@
 package Pages;
 
-import BaseClass.GlobalSetup;
+import Config.GlobalSetup;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.NoSuchElementException;
 
 /**
  * Created by aakumar on 25/10/17.
@@ -48,23 +51,42 @@ public class ProductPage
         {
             PageFactory.initElements(new AppiumFieldDecorator(webDriver),this);
         }
-        else
-        {
 
+    }
+
+    public void clickTip() throws TimeoutException,NoSuchElementException
+    {
+        try {
+            producttipspullout.click();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
+    public String getProductPrice()  throws TimeoutException,NoSuchElementException,NoSuchElementException
 
-    public void clickTip()
     {
-        producttipspullout.click();
+        try {
+
+            return price.getText();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "";
+        }
     }
-    public String getProductPrice()
+    public String getProductTitle()throws TimeoutException,NoSuchElementException
     {
-        return price.getText();
-    }
-    public String getProductTitle()
-    {
-        return title.getText();
+        try {
+            return title.getText();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "";
+        }
     }
 
 

@@ -1,4 +1,4 @@
-TestCaseWeather/ProductDescriptionTest.class
-TestCaseWeather/SignUpAndSignIn.class
-TestCaseWeather/LoginTest.class
-TestCaseWeather/ProductSearchTest.class
+FlipkartTest/BaseClassTest.class
+FlipkartTest/ProductDescriptionTest.class
+FlipkartTest/ProductSearchTest.class
+FlipkartTest/LoginTest.class
