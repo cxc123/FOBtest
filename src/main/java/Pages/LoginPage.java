@@ -1,7 +1,7 @@
 package Pages;
 
-import Config.GlobalSetup;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.android.*;
@@ -28,16 +28,20 @@ public class LoginPage {
     private AndroidDriver webDriver;
     public void loadLoginPage()
     {
-        if(GlobalSetup.getPlatform().equalsIgnoreCase("Mobile"))
-        {
+
             PageFactory.initElements(new AppiumFieldDecorator(webDriver),this);
-        }
+
 
     }
     public HomePage validlogin(String username,String password) throws TimeoutException,NoSuchElementException
     {
         try {
+            email.click();
+            webDriver.getKeyboard();
             email.sendKeys(username);
+            Thread.sleep(10000);
+            this.password.click();
+            webDriver.getKeyboard();
             this.password.sendKeys(password);
             login.click();
             return new HomePage(webDriver);
@@ -52,7 +56,11 @@ public class LoginPage {
     public LoginPage invalidLogin(String username,String password) throws TimeoutException,NoSuchElementException
     {
         try {
+            email.click();
+            webDriver.getKeyboard();
             email.sendKeys(username);
+            this.password.click();
+            webDriver.getKeyboard();
             this.password.sendKeys(password);
             login.click();
             return this;

@@ -1,7 +1,5 @@
-Config/AppiumExecution.class
+Pages/HomePage.class
 Pages/ProductPage.class
+Pages/LoginPage.class
 Pages/SearchPage.class
 Pages/SearchResultPage.class
-Pages/HomePage.class
-Pages/LoginPage.class
-Config/GlobalSetup.class

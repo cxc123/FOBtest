@@ -1,6 +1,5 @@
 package Pages;
 
-import Config.GlobalSetup;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -45,10 +44,9 @@ public class SearchResultPage
     private AndroidDriver webDriver;
     public void loadSearchResultPage()
     {
-        if(GlobalSetup.getPlatform().equalsIgnoreCase("Mobile"))
-        {
+
             PageFactory.initElements(new AppiumFieldDecorator(webDriver),this);
-        }
+
 
     }
 

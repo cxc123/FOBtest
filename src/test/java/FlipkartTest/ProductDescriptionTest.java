@@ -17,57 +17,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by aakumar on 26/10/17.
  */
-public class ProductDescriptionTest
+public class ProductDescriptionTest extends BaseTest
 {
-    AndroidDriver driver;
-    private String deviceName;
-    private String device;
-    private String platformName;
-    private String appiumUrl;
-    private String appiumPort;
-
-    @org.testng.annotations.Factory(dataProvider = "parallelDp")
-    public ProductDescriptionTest(String device,String deviceName,String platformName,String appiumUrl,String appiumPort) {
-        this.device=device;
-        this.deviceName=deviceName;
-        this.appiumUrl=appiumUrl;
-        this.appiumPort=appiumPort;
-        this.platformName=platformName;
-    }
 
 
-    @DataProvider(name = "parallelDp")
-    public static Object[][] parallelDp()
-    {
 
-        return new Object[][]
-                {
-
-                        {"Nexus 4 (Google)","Nexus_4_API_22","Android","http://127.0.0.1","4723"}
-                };
-    }
-
-    @BeforeClass
-    public void setup() throws Exception
-    {
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability("device", device);
-        dc.setCapability("deviceName",device);
-        dc.setCapability("platformName",platformName);
-        dc.setCapability("appPackage","com.flipkart.android");
-        dc.setCapability("appActivity","activity.HomeFragmentHolderActivity");
-        dc.setCapability("newCommandTimeout",100);
-        driver =  new AndroidDriver<MobileElement>(new URL(appiumUrl+":"+appiumPort+"/wd/hub"),dc);
-        driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
-
-    }
-
-
-    @AfterClass
-    public void tearDown()
-    {
-        driver.quit();
-    }
 
 
     /**

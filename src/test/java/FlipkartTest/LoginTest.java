@@ -1,10 +1,11 @@
 package FlipkartTest;
 
-import Config.GlobalSetup;
 import Pages.HomePage;
 import Pages.LoginPage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -13,63 +14,15 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.net.URL;
+import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by aakumar on 25/10/17.
  */
-public class LoginTest
+public class LoginTest extends BaseTest
 {
-    AndroidDriver driver;
-    private String deviceName;
-    private String device;
-    private String platformName;
-    private String appiumUrl;
-    private String appiumPort;
 
-    @org.testng.annotations.Factory(dataProvider = "parallelDp")
-    public LoginTest(String device,String deviceName,String platformName,String appiumUrl,String appiumPort) {
-        this.device=device;
-        this.deviceName=deviceName;
-        this.appiumUrl=appiumUrl;
-        this.appiumPort=appiumPort;
-        this.platformName=platformName;
-    }
-
-
-    @DataProvider(name = "parallelDp")
-    public static Object[][] parallelDp()
-    {
-
-        return new Object[][]
-                {
-
-                        {"Nexus 4 (Google)","Nexus_4_API_22","Android","http://127.0.0.1","4723"}
-                };
-    }
-
-    @BeforeClass
-    public void setup() throws Exception
-    {
-        System.out.print(GlobalSetup.getPlatform());
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setCapability("device", device);
-        dc.setCapability("deviceName",device);
-        dc.setCapability("platformName",platformName);
-        dc.setCapability("appPackage","com.flipkart.android");
-        dc.setCapability("appActivity","activity.HomeFragmentHolderActivity");
-        dc.setCapability("newCommandTimeout",100);
-        driver =  new AndroidDriver<MobileElement>(new URL(appiumUrl+":"+appiumPort+"/wd/hub"),dc);
-        driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
-
-    }
-
-
-    @AfterClass
-    public void tearDown()
-    {
-        driver.quit();
-    }
 
 
 
@@ -92,13 +45,14 @@ public class LoginTest
     @Test
     public void loginTest_pass() {
         try {
+
             String username = "aayushkumar08@gmail.com";
             String password = "aayush123";
             LoginPage loginPage = new LoginPage(driver);
             loginPage.loadLoginPage();
             HomePage homePage = loginPage.validlogin(username, password);
             homePage.loadHomePage();
-            Assert.assertTrue(homePage.searchMenuVisible() == true, "User not able to search menu after loggedin");
+           Assert.assertTrue(homePage.searchMenuVisible() == true, "User not able to search menu after loggedin");
         }
         catch (Exception e)
         {
