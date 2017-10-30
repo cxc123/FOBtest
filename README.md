@@ -71,3 +71,20 @@ Note:- If you want to run test on other devices Go to this class src/test/java/F
 3) Verify Successful logged in User is able to search for product and able to see product details once he/she navigate to Product Detail page by clicking on product in search page
 
 4) Verify Successful logged in User is able to search for  product in search page by entering search keyword
+
+## Run test on real android Devices
+
+Steps
+
+1) Connect your device to Laptop/Pc
+2) Enable USB debugging. To enable USB Debugging please find below steps
+   a) Navigate to Settings app on phone
+   b) Scroll down and click on the Developer Options
+   c) Turn on the Developer Options and click the USB Debugging.
+3) Run command adb devices and make sure you are seeing your connected devices. adb devices will show your devices connected with udid
+
+4) Go to this class src/test/java/FlipkartTest/BaseTest.java and change udid to your device udid
+  For ex:-
+    dc.setCapability("udid","emulator-5556");
+
+5) Run mvn clean test to run tests.
